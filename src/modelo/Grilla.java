@@ -1,3 +1,4 @@
+package modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,11 +40,8 @@ public class Grilla {
 	    if (caminoEncontradoSinPoda) {
 	    	return;  
 	    }
-
 	    llamadasSinPoda++;
-
 	    if (x >= n || y >= m) return;
-
 	    suma += matriz[x][y];
 	    camino.add(new Coordenada(x, y));
 
@@ -61,45 +59,45 @@ public class Grilla {
 	}
 
 
-private void backtrackConPoda(int x, int y, int suma, List<Coordenada> camino) {
-    if (caminoEncontrado) {
-    	return; 
-    }
+	private void backtrackConPoda(int x, int y, int suma, List<Coordenada> camino) {
+	    if (caminoEncontrado) {
+	    	return; 
+	    }
+	
+	    llamadasConPoda++;
+	
+	    if (x >= n || y >= m) {
+	    	return;
+	    }
+	
+	    suma += matriz[x][y];
+	    camino.add(new Coordenada(x, y));
+	
+	    int pasosRestantes = (n - 1 - x) + (m - 1 - y);
+	    if (Math.abs(suma) > pasosRestantes) {
+	        camino.remove(camino.size() - 1);
+	        return;
+	    }
+	
+	    if (x == n - 1 && y == m - 1) {
+	        if (suma == 0) {
+	            caminosValidos.add(new ArrayList<>(camino));
+	            caminoEncontrado = true;  // Marcar que ya encontramos uno
+	        }
+	    } else {
+	        backtrackConPoda(x + 1, y, suma, camino);
+	        backtrackConPoda(x, y + 1, suma, camino);
+	    }
+	
+	    camino.remove(camino.size() - 1);
+	}
 
-    llamadasConPoda++;
-
-    if (x >= n || y >= m) {
-    	return;
-    }
-
-    suma += matriz[x][y];
-    camino.add(new Coordenada(x, y));
-
-    int pasosRestantes = (n - 1 - x) + (m - 1 - y);
-    if (Math.abs(suma) > pasosRestantes) {
-        camino.remove(camino.size() - 1);
-        return;
-    }
-
-    if (x == n - 1 && y == m - 1) {
-        if (suma == 0) {
-            caminosValidos.add(new ArrayList<>(camino));
-            caminoEncontrado = true;  // Marcar que ya encontramos uno
-        }
-    } else {
-        backtrackConPoda(x + 1, y, suma, camino);
-        backtrackConPoda(x, y + 1, suma, camino);
-    }
-
-    camino.remove(camino.size() - 1);
-}
-
-private int numeroRandom() {
-    Random random = new Random();
-    int numeroRandom=random.nextInt(9)+2;
-    return numeroRandom;
-
-}
+	private int numeroRandom() {
+	    Random random = new Random();
+	    int numeroRandom=random.nextInt(9)+2;
+	    return numeroRandom;
+	
+	}
 
 
     public int getLlamadasSinPoda() {
