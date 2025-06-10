@@ -13,7 +13,6 @@ public class Grilla {
 	private boolean caminoEncontrado = false;
 
 
-
     public int llamadasSinPoda;
     public int llamadasConPoda;
     public List<List<Coordenada>> caminosValidos = new ArrayList<>();
@@ -171,6 +170,8 @@ private int numeroRandom() {
             System.out.println();
         }
     }
+    
+
     
    public int getElemnto(int x, int y) {
 	   return matriz[x][y];
