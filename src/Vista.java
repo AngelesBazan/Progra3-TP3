@@ -124,7 +124,7 @@ public class Vista extends JFrame {
 	}
 
 	private void dibujarCaminosConTimerLambda() {
-	    List<Coordenada> camino = grilla.getCaminosValidos().get(0); // o el camino que quieras
+	    List<Coordenada> camino = grilla.getCaminosValidos().get(0);
 
 	    final int[] indice = {0}; // contador mutable
 
