@@ -27,7 +27,7 @@ public class Vista extends JFrame {
 	
     private void inicializarUI() {
         setLayout(new BorderLayout());
-        setBounds(400, 400, 400, 400);
+        setBounds(500, 200, 400, 400);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         inicializarTabla();
@@ -99,6 +99,11 @@ public class Vista extends JFrame {
 	            timer.start();
 	        }
 	    }
+	
+	
+	public void mostrarMensaje(String mensaje) {
+	    JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
+	}
 
 
 		

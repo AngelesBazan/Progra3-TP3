@@ -24,6 +24,9 @@ public class Controlador {
         if (encontrado) {
             vista.dibujarCaminos(grilla.getCaminosValidos());
         }
+        else {
+        	vista.mostrarMensaje("No se encontraron caminos válidos");
+        }
     }
 
     public int getElemento(int x, int y) {
