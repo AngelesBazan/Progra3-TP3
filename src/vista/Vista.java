@@ -50,7 +50,7 @@ public class Vista extends JFrame {
     
     
     private void inicializarGrilla() {
-        int n = controlador.getN(); // Obtener dimensiones del modelo a través del controlador
+        int n = controlador.getN(); 
         int m = controlador.getM();
         celdas = new JLabel[n][m];	
 

@@ -116,6 +116,7 @@ public class Grilla {
 		return m;
 	}
 
+	
 	public boolean buscarCaminosValidosSinPoda() {
         if ((n + m - 1) % 2 != 0) return false; // cantidad de celdas debe ser par
 

@@ -17,7 +17,7 @@ public class Controlador {
     }
     
     public void iniciarBusqueda() {
-        boolean encontrado = grilla.buscarCaminosValidosConPoda();
+        boolean encontrado = grilla.buscarCaminosValidosConPoda() && grilla.buscarCaminosValidosSinPoda();
         vista.actualizarTabla(grilla.getTiempoConPoda(), grilla.getTiempoSinPoda(),
                               grilla.getLlamadasConPoda(), grilla.getLlamadasSinPoda());
 
