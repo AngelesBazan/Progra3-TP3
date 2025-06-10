@@ -1,25 +1,40 @@
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JPanel;	
 import javax.swing.Timer;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
 
 public class Vista extends JFrame {
 	JPanel laminaGrilla;
 	Grilla grilla;
+	
 
+	JLabel tiempoConPoda;
+	JLabel tiempoSinPoda;
+
+	JTable tablaResultados;
+	JScrollPane panelTabla;
+	DefaultTableModel modeloTabla;
+	
     private JLabel[][] celdas; // Matriz para guardar cada JLabel
 
 	public Vista() {
 		setLayout(new BorderLayout());
 		setBounds(400,400,400,400);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		grilla=new Grilla();
 		int n=grilla.getN();
 		int m=grilla.getM();
@@ -30,12 +45,34 @@ public class Vista extends JFrame {
 		laminaGrilla.setLayout(new GridLayout(grilla.getN(),grilla.getM()));
 		Border borde = BorderFactory.createLineBorder(Color.BLACK, 2);
 		laminaGrilla.setBorder(borde);
-
-		
 		crearGrilla(n,m);
+
+
+
+	 
+	    String[] columnas = { "", "Con poda", "Sin poda" }; 
+	    String[][] datos = {
+	        { "Tiempo (ms)", "-", "-" },  
+	        { "Cant. de caminos explorados", "-", "-" }  
+	    };
+	    
+
+	    modeloTabla = new DefaultTableModel(datos, columnas);
+	    tablaResultados = new JTable(modeloTabla);
+	    panelTabla = new JScrollPane(tablaResultados); 
+	    
+	    panelTabla.setPreferredSize(new Dimension(400, 80));
+	    laminaGrilla.setPreferredSize(new Dimension(400, 300)); 
+	    
+	   
+	    add(panelTabla, BorderLayout.NORTH); 
+	    add(laminaGrilla, BorderLayout.CENTER);
+
+	    pack();
+	    setVisible(true);
 		
 		grilla.imprimirMatriz();
-		
+
 		System.out.println("buscartcaminosValidos:"+grilla.buscarCaminosValidosConPoda());
 		System.out.println("llamadas con poda:"+grilla.getLlamadasConPoda());
 		
@@ -50,16 +87,22 @@ public class Vista extends JFrame {
 		System.out.println(grilla.getCaminosValidos().size());
 		System.out.println("tiempo de ejecucion:"+grilla.getTiempoSinPoda());
 		
+		
+		modeloTabla.setValueAt(String.valueOf(grilla.getTiempoConPoda()), 0, 1); 
+		modeloTabla.setValueAt(String.valueOf(grilla.getTiempoSinPoda()), 0, 2);
+		modeloTabla.setValueAt(String.valueOf(grilla.getLlamadasConPoda()), 1, 1); 
+		modeloTabla.setValueAt(String.valueOf(grilla.getLlamadasSinPoda()), 1, 2); 
+
 		if(!grilla.getCaminosValidos().isEmpty()) {
 			
 			dibujarCaminosConTimerLambda();
 		}
 		   
-		
-		add(laminaGrilla,BorderLayout.CENTER);
+
 		setVisible(true);
 	
-	
+
+
 	
 	}
 
@@ -81,7 +124,7 @@ public class Vista extends JFrame {
 	}
 
 	private void dibujarCaminosConTimerLambda() {
-	    List<Coordenada> camino = grilla.getCaminosValidos().get(0); // o el camino que quieras
+	    List<Coordenada> camino = grilla.getCaminosValidos().get(0);
 
 	    final int[] indice = {0}; // contador mutable
 
@@ -102,11 +145,6 @@ public class Vista extends JFrame {
 	    timer.start();
 	}
 		
-		
-	
-	
-	
-	
 	
 
 }
