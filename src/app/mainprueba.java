@@ -1,5 +1,4 @@
 package app;
-import vista.Vista;
 import controlador.Controlador;
 
 public class mainprueba {
