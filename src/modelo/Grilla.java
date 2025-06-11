@@ -16,6 +16,7 @@ public class Grilla {
 
 	public int llamadasSinPoda;
 	public int llamadasConPoda;
+	
 	public List<List<Coordenada>> caminosValidos = new ArrayList<>();
 
 	public Grilla() {
@@ -119,10 +120,12 @@ public class Grilla {
 		llamadasSinPoda = 0;
 		caminoEncontradoSinPoda = false;
 		caminosValidos.clear();
-		long inicio = System.currentTimeMillis();
+		double inicio = System.nanoTime();
 		backtrackSinPoda(0, 0, 0, new ArrayList<>());
-		long fin = System.currentTimeMillis();
-		tiempoSinPoda = fin - inicio;
+		double fin = System.nanoTime();
+		tiempoSinPoda = (fin - inicio) / 1000000;
+		
+		System.out.print("Tiempo sin poda(ms): " +tiempoSinPoda); 
 
 		return !caminosValidos.isEmpty();
 	}

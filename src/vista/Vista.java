@@ -66,8 +66,8 @@ public class Vista extends JFrame {
 	}
 
 	public void actualizarTabla(double tiempoConPoda, double tiempoSinPoda, int llamadasConPoda, int llamadasSinPoda) {
-		modeloTabla.setValueAt(String.valueOf(tiempoConPoda), 0, 1);
-		modeloTabla.setValueAt(String.valueOf(tiempoSinPoda), 0, 2);
+		modeloTabla.setValueAt(String.format("%.10f",tiempoConPoda), 0, 1);
+		modeloTabla.setValueAt(String.format("%.10f",tiempoSinPoda), 0, 2);
 		modeloTabla.setValueAt(String.valueOf(llamadasConPoda), 1, 1);
 		modeloTabla.setValueAt(String.valueOf(llamadasSinPoda), 1, 2);
 	}
