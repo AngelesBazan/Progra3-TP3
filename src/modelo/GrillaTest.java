@@ -59,4 +59,15 @@ public class GrillaTest {
     }
     
     
+    @Test
+    public void testGeneracionAleatoriaValidaDeGrilla() {
+        Grilla grilla = new Grilla();
+        assertTrue(grilla.getFilas() >= 2 && grilla.getFilas() <= 10);
+        assertTrue(grilla.getColumnas() >= 2 && grilla.getColumnas() <= 10);
+    }
+ 
+
+    
+    
+    
 }
