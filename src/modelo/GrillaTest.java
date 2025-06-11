@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.List;
 
 public class GrillaTest {
-	// Test que verifica que no hay camino válido cuando no existe sin poda
+	
     @Test
     public void testSinCaminoValidoSinPoda() {
         int[][] matriz = {
@@ -24,7 +24,6 @@ public class GrillaTest {
         assertEquals("No debe haber caminos válidos guardados", 0, grilla.getCaminosValidos().size());
     }
 
-    // Test que verifica que no hay camino válido cuando no existe con poda
     @Test
     public void testSinCaminoValidoConPoda() {
         int[][] matriz = {
@@ -41,7 +40,7 @@ public class GrillaTest {
 
     
 
-    // Test que verifica que el tiempo medido es mayor o igual a cero
+   
     @Test
     public void testTiempoEjecucionNoNegativo() {
         int[][] matriz = {
