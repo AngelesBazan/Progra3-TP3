@@ -25,6 +25,19 @@ public class Grilla {
 		matriz = new int[filas][columnas];
 		crearMatriz();
 	}
+	
+	//sobrecarga de constructor para ser usado en los tests
+	public Grilla(int[][] matrizPredefinida) {
+	    int n = matrizPredefinida.length;
+	    int m = matrizPredefinida[0].length;
+	    this.matriz = new int[n][m];
+
+	    // Copiamos la matriz para evitar efectos colaterales
+	    for (int i = 0; i < n; i++) {
+	        System.arraycopy(matrizPredefinida[i], 0, this.matriz[i], 0, m);
+	    }
+	}
+
 
 	private void crearMatriz() {
 		Random random = new Random();
