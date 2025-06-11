@@ -138,9 +138,6 @@ public class Grilla {
 		backtrackSinPoda(0, 0, 0, new ArrayList<>());
 		double fin = System.nanoTime();
 		tiempoSinPoda = (fin - inicio) / 1000000;
-		
-		System.out.print("Tiempo sin poda(ms): " +tiempoSinPoda); 
-
 		return !caminosValidos.isEmpty();
 	}
 
